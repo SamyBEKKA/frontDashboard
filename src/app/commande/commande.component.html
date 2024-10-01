@@ -1,0 +1,70 @@
+<app-header></app-header>
+<section class="container mt-5">
+  <!-- Services Section -->
+  <h2 class="text-center mb-4">Services</h2>
+  <div class="row">
+    <div class="col-md-4" *ngFor="let service of services">
+      <div class="card mb-4 shadow-sm">
+        <img [src]="service.service_image" class="card-img-top" alt="">
+        <div class="card-body text-center">
+          <h5 class="card-title">{{ service.service_name }}</h5>
+          <p class="card-text">Prix : {{ service.service_price }}€</p>
+          <button class="btn btn-primary btn-block" (click)="selectService(service)">Sélectionner</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Articles and Materials Section -->
+  <div class="row">
+    <div class="col-md-6">
+      <h3>Choisir un article</h3>
+      <div class="form-group">
+        <label for="articleSelect">Sélectionnez un article :</label>
+        <select id="articleSelect" class="form-control" [(ngModel)]="selectedArticle">
+          <option *ngFor="let article of articles" [value]="article.article_name">
+            {{ article.article_name }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <h3>Choisir un matériel</h3>
+      <div class="form-group">
+        <label for="materialSelect">Sélectionnez un type de matériel :</label>
+        <select id="materialSelect" class="form-control" [(ngModel)]="selectedMaterial">
+          <option *ngFor="let material of materials" [value]="material.material_name">
+            {{ material.material_name }}
+          </option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Button to Save the Selected Options -->
+  <div class="text-center mt-4">
+    <button class="btn btn-primary btn-lg" (click)="saveOrder()">Sauvegarder la commande</button>
+  </div>
+
+  <!-- Display Saved Orders -->
+<div *ngIf="savedOrders.length > 0" class="mt-5">
+  <h3 class="text-center">Commandes sauvegardées</h3>
+  <ul class="list-group">
+    <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let order of savedOrders; let i = index">
+      <div>
+        Service : {{ order.service }} - Article : {{ order.article }} - Matériel : {{ order.material }}
+      </div>
+      <!-- Icone de poubelle pour supprimer la commande -->
+      <a class="btn btn-danger" (click)="removeOrder(i)">
+        <i class="bi bi-trash"></i>
+      </a>
+    </li>
+  </ul>
+  <div class="text-center mt-4">
+    <button (click)="proceedToOrder()" class="btn btn-primary btn-lg">Passer la commande</button>
+  </div>  
+</div>
+</section>
+
+  

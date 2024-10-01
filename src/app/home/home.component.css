@@ -1,0 +1,61 @@
+/* Logo */
+.logo {
+    background-color: skyblue;
+    border-radius: 50%;
+    width: 60px; /* Ajuste selon tes besoins */
+    height: 60px; /* Ajuste selon tes besoins */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .big-l {
+    font-size: 2rem; /* Ajuste la taille de la lettre */
+    font-weight: bold;
+    color: white; /* Couleur de la lettre */
+  }
+  .text-accent {
+    color: #FFE553; /* Couleur accent */
+}
+
+  /* Icônes */
+  .nav-icons {
+    display: flex;
+    align-items: center;
+  }
+  
+  .nav-icon {
+    margin-left: 15px; /* Espacement entre les icônes */
+  }
+  
+  .nav-icon img {
+    width: 25px; /* Ajuste la taille des icônes */
+    height: 25px; /* Ajuste la taille des icônes */
+  }
+  
+  /* Ajustement CSS après Bootstrap */
+  .full-width-image {
+    height: 60vh; /* Garde une hauteur rectangulaire */
+    object-fit: cover;
+  }
+
+  /* Style pour centrer le texte en bas de l'image */
+  .image-text {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    background-color: rgba(0, 0, 0, 0.2); /* Fond semi-transparent */
+    padding: 10px 20px;
+    text-align: center;
+    width: 100%;
+  }
+
+  /* Styles responsive */
+  @media (max-width: 768px) {
+    .nav-icons {
+      margin-top: 10px; /* Ajoute un espacement vertical sur mobile */
+    }
+  }
+  
