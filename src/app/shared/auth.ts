@@ -28,6 +28,11 @@ export interface Material {
   material_name: string;
 }
 
+export interface ApiListResponse<T> {
+  '@id': string;
+  'hydra:totalItem':number;
+  'hydra:member':T[];
+}
 // export interface IUser {
 //     username:string;
 //     password:string;

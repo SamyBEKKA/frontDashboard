@@ -58,7 +58,7 @@ export class HomeComponent implements OnInit {
 
   loadServices() {
     this.prestationService.getServices().subscribe(data => {
-      this.services = data;
+      this.services = data['hydra:member'];
     });
   }
 
