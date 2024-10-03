@@ -20,7 +20,7 @@ export class ConfirmationCommandeComponent implements OnInit {
 
   ngOnInit(): void {
     // Récupérer les informations utilisateur à partir du token
-    this.user = this.authService.getCurrentUser().subscribe;
+    this.user = this.authService.getCurrentUser();
 
     if (this.user) {
       console.log('Utilisateur récupéré à partir du token :', this.user);
