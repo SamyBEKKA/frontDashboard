@@ -1,0 +1,34 @@
+.logo-L {
+    max-width: 150px; /* Taille maximale du logo */
+    height: auto;     /* Ajuste automatiquement la hauteur pour respecter le ratio */
+}
+
+@media (max-width: 768px) {
+    .dropdown-menu {
+      margin-right: 20px; /* Ajuste la marge à droite sur mobile */
+    }
+}
+
+@media (max-width: 575px) {
+    /* Cibler les écrans mobiles avec une largeur max de 575px */
+    .dropdown-menu {
+      position: absolute; /* Permet de contrôler la position du menu */
+      right: 10px; /* Décale le menu vers la droite */
+      left: auto;  /* Assure que le menu ne soit pas aligné à gauche */
+      margin: 0;   /* Supprime toute marge supplémentaire */
+    }
+  
+    /* Ajuster la largeur des boutons dans le menu pour mobile */
+    .dropdown-menu .btn {
+      width: 90%; /* Réduit légèrement la largeur des boutons */
+      margin: 0 auto; /* Centre les boutons */
+    }
+  
+    /* Centre le texte du lien dans le menu */
+    .dropdown-menu a {
+      text-align: center; /* Centre le texte des liens */
+    }
+}
+  
+  
+  

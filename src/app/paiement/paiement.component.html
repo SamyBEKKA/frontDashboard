@@ -1,1 +1,50 @@
-<p>paiement works!</p>
+<app-header></app-header>
+<section>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+          <div class="col-md-8">
+            <h2 class="text-center mb-4">Détails de votre commande</h2>
+      
+            <!-- Afficher les commandes du panier -->
+            <div *ngIf="savedOrders && savedOrders.length > 0">
+              <ul class="list-group mb-4">
+                <li class="list-group-item" *ngFor="let order of savedOrders; let i = index">
+                  <strong>Commande {{ i + 1 }} :</strong> <br>
+                  Service : {{ order.service.service_name }} <br>
+                  Prix : {{ order.price }}€ <br>
+                  Article : {{ order.article.article_name }} <br>
+                  Matériel : {{ order.material.material_name }}
+                </li>
+              </ul>
+      
+              <!-- Total de la commande -->
+              <h2 class="text-center">Total : {{ totalPrice }}€</h2>
+      
+              <!-- Sélection de la méthode de paiement -->
+              <div class="form-group">
+                <label for="paiement-select">Méthode de paiement :</label>
+                <select id="paiement-select" [(ngModel)]="selectedPaiement" class="form-control">
+                    <option *ngFor="let paiement of paiements" [value]="paiement.id">{{ paiement.paiement_method }}</option>
+                </select> 
+              </div>
+      
+              <!-- Bouton Payer -->
+              <div class="text-center mt-4">
+                <button class="btn btn-success btn-lg" (click)="submitOrder()">
+                  Payer
+                </button>
+              </div>
+            </div>
+            <div *ngIf="errorMessage" class="alert alert-danger text-center">
+                {{ errorMessage }}
+            </div>
+
+            <!-- Si le panier est vide -->
+            <div *ngIf="!savedOrders || savedOrders.length === 0" class="text-center">
+              <p>Votre panier est vide.</p>
+            </div>
+          </div>
+        </div>
+    </div>
+</section>
+  

@@ -1,24 +1,34 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { ApiListResponse, Item } from './auth';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ItemService {
 
-  private url = environment.apiURL + '/orders';
+  private url = environment.apiURL + '/items';
 
   constructor(private http: HttpClient) {}
 
-  isUserLoggedIn(): boolean {
-    // Logique pour vérifier si l'utilisateur est connecté
-    return !!localStorage.getItem('token');
+  // Créer un item avec le modèle Hydra
+  createItem(item: Item): Observable<Item> {
+    return this.http.post<Item>(this.url, item, { headers: this.getAuthHeaders() });
   }
 
-  createOrder(selectedArticles: any[], totalPrice: number): Observable<any> {
-    // Logique pour créer une commande
-    return this.http.post(this.url, { articles: selectedArticles, total: totalPrice });
+  // Ajouter ici les en-têtes d'authentification avec le token
+  getAuthHeaders(): HttpHeaders {
+    const token = localStorage.getItem('token');
+    return new HttpHeaders({
+      Authorization: `${token}`
+    });
   }
+
+  // Récupérer les items
+  getItems(): Observable<ApiListResponse<Item>> {
+    return this.http.get<ApiListResponse<Item>>(this.url, { headers: this.getAuthHeaders() });
+  }
+
 }

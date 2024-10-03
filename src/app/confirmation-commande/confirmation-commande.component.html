@@ -1,1 +1,65 @@
-<p>confirmation-commande works!</p>
+<app-header></app-header>
+<section class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-body">
+            <h3 class="card-title text-center mb-4">Confirmation de Commande</h3>
+            
+            <!-- Informations utilisateur -->
+            <h5 class="mb-3">Vérifiez vos informations :</h5>
+            <div *ngIf="user">
+                <div class="row" *ngIf="user">
+                <!-- Nom complet de l'utilisateur -->
+                <div class="col-md-6">
+                    <p><strong>Nom:</strong> {{ user.user_name }} {{ user.user_last_name }}</p>
+                </div>
+    
+                <!-- Email de l'utilisateur -->
+                <div class="col-md-6">
+                    <p><strong>Email:</strong> {{ user.user_email }}</p>
+                </div>
+                </div>
+    
+                <div class="row">
+                <!-- Adresse de l'utilisateur -->
+                <div class="col-md-6">
+                    <p><strong>Adresse:</strong> {{ user.user_adress }}</p>
+                </div>
+    
+                <!-- Ville de l'utilisateur -->
+                <!-- <div class="col-md-6">
+                    <p><strong>Ville:</strong> {{ city.city_name }}</p>
+                </div> -->
+                </div>
+    
+                <div class="row">
+                <!-- Numéro de téléphone de l'utilisateur -->
+                <div class="col-md-6">
+                    <p><strong>Téléphone:</strong> {{ user.user_tel }}</p>
+                </div>
+    
+                <!-- Date de naissance de l'utilisateur -->
+                <div class="col-md-6">
+                    <p><strong>Date de Naissance:</strong> {{ user.user_birthday | date:'dd/MM/yyyy' }}</p>
+                </div>
+                </div>
+    
+                
+            </div>
+            <div *ngIf="!user">
+                <p>Aucun utilisateur trouvé.</p>
+            </div>
+
+            <!-- Bouton Continuer -->
+            <div class="text-center mt-4">
+                <button class="btn btn-primary btn-lg" (click)="continue()">
+                Continuer
+                </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  

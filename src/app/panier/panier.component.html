@@ -1,1 +1,46 @@
-<p>panier works!</p>
+<app-header></app-header>
+<section class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <!-- Si le panier contient des commandes -->
+        <div *ngIf="savedOrders && savedOrders.length > 0">
+            <h2 class="text-center mb-4">Votre Panier</h2>
+            
+            <!-- Liste des commandes sous forme de cards -->
+            <div class="card mb-3" *ngFor="let order of savedOrders">
+                <div class="card-body">
+                <h5 class="card-title">Service : {{ order.service }}</h5>
+                <h4 class="card-title">Prix : {{ order.price }} €</h4>
+                <p class="card-text">Article : {{ order.article }}</p>
+                <p class="card-text">Matériel : {{ order.material }}</p>
+                </div>
+            </div>
+            <br>
+            <!-- Affichage du nombre total de commandes -->
+            <h4 class="text-center mt-4">Total de commandes : {{ totalOrders }}</h4>
+            <!-- Affichage du total -->
+            <h2 class="text-center mt-4 m-2 p-5">Prix total : {{ totalPrice }} €</h2>
+            <!-- Bouton Sauvegarder la commande -->
+            <div class="text-center">
+                <button class="btn btn-primary btn-lg" (click)="goToConfirmation()">
+                Commander
+                </button>
+            </div>
+    
+            <br>
+            <!-- Bouton Retour à la commande -->
+            <div class="text-center">
+                <button class="btn btn-secondary btn-sm" (click)="goToCommande()">
+                Retour
+                </button>
+            </div>
+        </div>
+  
+        <!-- Si le panier est vide -->
+        <div *ngIf="!savedOrders || savedOrders.length === 0" class="text-center">
+            <p>Votre panier est vide.</p>
+        </div>
+      </div>
+    </div>
+</section>
+<app-footer></app-footer>

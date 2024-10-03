@@ -21,7 +21,7 @@ export class MaterialService {
     const token = localStorage.getItem('token'); // Récupère le token
     if (token) {
       return new HttpHeaders({
-        Authorization: `Bearer ${token}`, // Ajoute le token si l'utilisateur est connecté
+        Authorization: `${token}`, // Ajoute le token si l'utilisateur est connecté
       });
     } else {
       return new HttpHeaders(); // Pas de token si l'utilisateur est déconnecté

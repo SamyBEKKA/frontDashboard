@@ -21,7 +21,7 @@ export class ArticleService {
     const token = localStorage.getItem('token');
     if (token) {
       return new HttpHeaders({
-        Authorization: `Bearer ${token}`,
+        Authorization: `${token}`,
       });
     } else {
       return new HttpHeaders();

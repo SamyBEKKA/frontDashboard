@@ -1,4 +1,5 @@
 export interface User {
+  id:number;
   user_name: string;
   user_last_name: string;
   user_genre: string; // Par exemple, 'Autre' / 'M' ou 'F'
@@ -27,7 +28,27 @@ export interface Material {
   id: number;
   material_name: string;
 }
-
+export interface Order {
+  id?: number; // Rendre 'id' optionnel
+  user_id: string;
+  paiement_effect: boolean;
+  status_id: string;
+  paiement_id: string;
+  items: string[];
+}
+export interface Item {
+  id: number;
+  article_id: number;
+  service_id: number;
+  material_id: number;
+  total_price: number;
+  nombres_articles: number;
+  order_id: string;
+}
+export interface Paiement {
+  id:number;
+  paiement_method:string;
+}
 export interface ApiListResponse<T> {
   '@id': string;
   'hydra:totalItem':number;

@@ -8,6 +8,12 @@
     align-items: center;
     justify-content: center;
   }
+
+.logo-L {
+    max-width: 150px; /* Taille maximale du logo */
+    height: auto;     /* Ajuste automatiquement la hauteur pour respecter le ratio */
+ }
+
   
   .big-l {
     font-size: 2rem; /* Ajuste la taille de la lettre */
@@ -57,5 +63,19 @@
     .nav-icons {
       margin-top: 10px; /* Ajoute un espacement vertical sur mobile */
     }
+    .dropdown-menu {
+      margin-right: 20px; /* Ajuste la marge à droite sur mobile */
+    }
   }
+
+  @media (max-width: 575px) {
+    .nav-icons {
+      margin-top: 10px; /* Ajoute un espacement vertical sur mobile */
+    }
+    .dropdown-menu {
+      margin-right: 20px; /* Ajuste la marge à droite sur mobile */
+    }
+  }
+  
+  
   

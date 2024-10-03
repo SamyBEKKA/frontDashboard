@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { catchError, Observable, tap, throwError } from 'rxjs';
 import { Router } from '@angular/router';
-import { IToken } from './auth';
 import { environment } from '../../environments/environment';
-import { FormGroup } from '@angular/forms';
+import { CityService } from './city.service';
+import { User } from './auth';
 
 @Injectable({
   providedIn: 'root'
@@ -14,12 +14,38 @@ export class AuthService {
   private url = environment.apiURL + '/users';
   private loginUrl = environment.apiURL + '/login_check';
   
-  constructor(private http: HttpClient, private router:Router) {}
+  constructor(
+    private http: HttpClient, 
+    private router:Router, 
+    private cityService: CityService // Injection du CityService
+    ) {}
 
   // Méthode pour effectuer la connexion
+  // login(credentials: { username: string; password: string }): Observable<any> {
+  //   return this.http.post(this.loginUrl, credentials);
+  // }
+    // Méthode pour effectuer la connexion
   login(credentials: { username: string; password: string }): Observable<any> {
-    return this.http.post(this.loginUrl, credentials);
+    return this.http.post(this.loginUrl, credentials).pipe(
+      tap((response: any) => {
+        // Sauvegarder le token dans le localStorage
+        this.saveToken(response.token);
+        
+        // Sauvegarder également des informations supplémentaires si disponibles dans la réponse
+        const decodedToken = this.decodeToken(response.token);
+        if (decodedToken) {
+          const userInfo = {
+            user_id: decodedToken.user_id,  // Sauvegarder l'ID utilisateur (ajustez selon votre token)
+            username: decodedToken.username, // Sauvegarder l'email ou nom d'utilisateur
+            roles: decodedToken.roles,       // Sauvegarder les rôles
+          };
+          localStorage.setItem('user_info', JSON.stringify(userInfo));
+        }
+      })
+    );
   }
+
+  
   // Sauvegarder le token dans le localStorage
   saveToken(token: string): void {
     localStorage.setItem('token', token);
@@ -36,11 +62,7 @@ export class AuthService {
 
   // Vérifier si l'utilisateur est connecté
   isLogged(): boolean {
-    if(this.getToken()){
-      return true;
-    } else {
-      return false
-    }
+    return !!this.getToken() && !!localStorage.getItem('user_info');
   }
   
   // Déconnexion
@@ -49,4 +71,55 @@ export class AuthService {
       this.router.navigate(['/login']);
     }
   
+  // Récupérer la ville de l'utilisateur via son ID
+  getUserCity(cityId: number): Observable<any> {
+    return this.cityService.getCityById(cityId); // Appel au service City
+  }
+
+  // Méthode pour décoder le token JWT et extraire les informations
+  decodeToken(token: string): any {
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      console.log('Contenu du token décodé :', payload);
+      return payload;
+    } catch (error) {
+      console.error('Erreur lors du décodage du token:', error);
+      return null;
+    }
+  }
+
+  // Méthode pour récupérer l'utilisateur via son username (avec type User)
+  getUserByUsername(username: string): Observable<User> {
+    const url = `${environment.apiURL}/users?username=${username}`;
+    return this.http.get<User>(url);  // Retourne un Observable de type User
+  }
+
+  // Méthode pour récupérer l'utilisateur courant (depuis le token)
+  getCurrentUser(): User | null {
+    const token = this.getToken();
+  
+    if (token) {
+      const decodedToken = this.decodeToken(token);
+  
+      if (decodedToken && decodedToken.username) {
+        // Appel API pour obtenir les détails de l'utilisateur
+        return {
+          id: 0,  // À remplacer par l'ID correct une fois récupéré
+          user_name: decodedToken.username,
+          user_last_name: '',  // À récupérer depuis une autre source si nécessaire
+          user_genre: '',      // À récupérer
+          user_birthday: new Date(),  // À récupérer
+          user_email: '',      // À récupérer
+          user_tel: '',        // À récupérer
+          user_adress: '',     // À récupérer
+          user_password: '',   // Non nécessaire ici
+          user_roles: decodedToken.roles
+        };
+      }
+    }
+
+    return null;
+  }
+  
+
 }

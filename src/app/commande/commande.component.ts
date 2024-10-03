@@ -92,10 +92,11 @@ export class CommandeComponent implements OnInit {
     if (this.selectedService && this.selectedArticle && this.selectedMaterial) {
       const order = {
         service: this.selectedService.service_name,
+        price: this.selectedService.service_price,
         article: this.selectedArticle,
         material: this.selectedMaterial
       };
-
+      console.log("Order saved:", order); // Ajout du log pour vérifier les données
       // Sauvegarder les commandes dans localStorage
       const existingOrders = localStorage.getItem('orders') 
         ? JSON.parse(localStorage.getItem('orders')!) 
