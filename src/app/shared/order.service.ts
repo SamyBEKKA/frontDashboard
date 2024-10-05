@@ -26,7 +26,9 @@ export class OrderService {
   }
 
   // Récupérer les commandes de l'utilisateur connecté
-  getOrders(): Observable<ApiListResponse<Order>> {
-    return this.http.get<ApiListResponse<Order>>(this.url, { headers: this.getAuthHeaders() });
+  getOrders(userId: string): Observable<ApiListResponse<Order>> {
+    return this.http.get<ApiListResponse<Order>>(`${this.url}?user_id=${userId}`, {
+      headers: this.getAuthHeaders()
+    });
   }
 }

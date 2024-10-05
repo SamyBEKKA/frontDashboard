@@ -1,6 +1,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Ysabeau+Infant:wght@400;700&display=swap" rel="stylesheet">
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light container-fluid">
+<nav class="navbar navbar-expand-lg navbar-light bg-light container-fluid fixed-top">
     <a class="navbar-brand d-flex align-items-center" href="#">
         <img src="/assets/logo_hackaton_du_pressing.webp" alt="logo_hackaton_du_pressing" class="logo-L img-fluid" title="logo_hackaton_du_pressing" style="max-width: 150px;">
         <span class="ml-2">Hackaton Du Pressing</span>
@@ -12,16 +12,16 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav mx-auto">
             <li class="nav-item" (click)="setActiveMenu('accueil')">
-                <a class="nav-link" [ngClass]="{'text-accent': isActiveMenu('dashboard')}" href="dashboard">Accueil</a>
+                <a class="nav-link" [ngClass]="{'text-accent': isActiveMenu('')}" href="#accueil">Accueil</a>
             </li>
             <li class="nav-item" (click)="setActiveMenu('qui_sommes_nous')">
-                <a class="nav-link" [ngClass]="{'text-accent': isActiveMenu('qui_sommes_nous')}" href="#">Qui sommes-nous ?</a>
+                <a class="nav-link" [ngClass]="{'text-accent': isActiveMenu('qui_sommes_nous')}" href="#qui-sommes-nous">Qui sommes-nous ?</a>
             </li>
             <li class="nav-item" (click)="setActiveMenu('prestation')">
-                <a class="nav-link" [ngClass]="{'text-accent': isActiveMenu('prestation')}" href="#">Prestation</a>
+                <a class="nav-link" [ngClass]="{'text-accent': isActiveMenu('prestation')}" href="#prestations">Prestation</a>
             </li>
             <li class="nav-item" (click)="setActiveMenu('contact')">
-                <a class="nav-link" [ngClass]="{'text-accent': isActiveMenu('contact')}" href="#">Contact</a>
+                <a class="nav-link" [ngClass]="{'text-accent': isActiveMenu('contact')}" href="#contact">Contact</a>
             </li>
         </ul>
 
@@ -60,32 +60,32 @@
     </div>
 </nav>
 
-
-<div class="container-fluid p-0 position-relative">
-    <img src="/assets/photo_header_hackaton_pressing.webp" class="img-fluid full-width-image w-100" alt="Hackaton Image">
-    <div class="image-text">
-      <h1>Hackaton Du Pressing</h1>
-      <a href="/commande">
-      <button type="button" class="btn btn-primary">Commande</button>
-    </a>
+<section id="accueil">
+    <div class="container-fluid p-0 position-relative">
+        <img src="/assets/photo_header_hackaton_pressing.webp" class="img-fluid full-width-image w-100" alt="Hackaton Image">
+        <div class="image-text">
+        <h1>Hackaton Du Pressing</h1>
+        <a href="/commande">
+        <button type="button" class="btn btn-primary">Commande</button>
+        </a>
+        </div>
     </div>
-</div>
-
+</section>
 <div class="spacer"></div>
 
 <!-- Section Qui sommes-nous ? -->
-<section>
+<section id="qui-sommes-nous">
     <div class="container my-5" id="qui-sommes-nous">
         <h2>Qui sommes-nous ?</h2>
-        <p>Bienvenue chez <strong>Ackaton de Pressing</strong>, votre entreprise locale de lavage et entretien textile, gérée par un couple passionné par le service de qualité. Nous nous engageons à rendre la vie de nos clients plus simple et agréable en leur offrant un service personnalisé et attentif.</p>
+        <p>Bienvenue chez <strong>Hackaton du Pressing</strong>, votre entreprise locale de lavage et entretien textile, gérée par un couple passionné par le service de qualité. Nous nous engageons à rendre la vie de nos clients plus simple et agréable en leur offrant un service personnalisé et attentif.</p>
         <br>
         <h3>Notre Engagement</h3>
-        <p>Chez Ackaton de Pressing, nous croyons en l'importance de la propreté et de l'entretien de vos vêtements. Nous utilisons des méthodes de nettoyage respectueuses de l'environnement et des produits de haute qualité pour garantir la satisfaction de nos clients. Que vous ayez besoin d’un lavage classique, d’un repassage soigné ou d’un nettoyage délicat, notre équipe expérimentée est là pour répondre à vos besoins.</p>
+        <p>Chez Hackaton du Pressing, nous croyons en l'importance de la propreté et de l'entretien de vos vêtements. Nous utilisons des méthodes de nettoyage respectueuses de l'environnement et des produits de haute qualité pour garantir la satisfaction de nos clients. Que vous ayez besoin d’un lavage classique, d’un repassage soigné ou d’un nettoyage délicat, notre équipe expérimentée est là pour répondre à vos besoins.</p>
         <br>
         <h3>Notre Équipe</h3>
         <p>Nous sommes fiers de notre équipe d'employés locaux, qualifiés et dévoués. Au fil des visites, vous aurez la chance de retrouver les mêmes visages, car nous savons qu'un contact client agréable est essentiel. Notre personnel connaît vos préférences et s'assure de vous offrir une expérience fluide et chaleureuse à chaque visite.</p>
         <br>
-        <h3>Pourquoi Choisir Ackaton de Pressing ?</h3>
+        <h3>Pourquoi Choisir Hackaton du Pressing ?</h3>
         <ul>
             <li><strong>Qualité</strong> : Un soin méticuleux pour chaque article.</li>
             <li><strong>Rapidité</strong> : Un service rapide sans compromettre la qualité.</li>
@@ -94,10 +94,10 @@
             <li><strong>Confiance</strong> : Une relation client chaleureuse, renforcée par des employés réguliers.</li>
         </ul>
         <br>
-        <p>Rejoignez notre communauté de clients satisfaits et découvrez la différence Ackaton de Pressing. Nous sommes impatients de vous servir et de prendre soin de vos textiles comme s’ils étaient les nôtres !</p>
+        <p>Rejoignez notre communauté de clients satisfaits et découvrez la différence Hackaton du Pressing. Nous sommes impatients de vous servir et de prendre soin de vos textiles comme s’ils étaient les nôtres !</p>
     </div>
 </section>
-<section>
+<section id="prestations">
     <div class="container-fluid my-5" id="prestations">
         <h2 class="text-center">Nos Prestations</h2>
         <div class="row">
@@ -120,5 +120,4 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    
-<router-outlet></router-outlet>
+<router-outlet id="contact"></router-outlet>

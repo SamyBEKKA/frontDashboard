@@ -24,7 +24,8 @@
               <div class="form-group">
                 <label for="paiement-select">Méthode de paiement :</label>
                 <select id="paiement-select" [(ngModel)]="selectedPaiement" class="form-control">
-                    <option *ngFor="let paiement of paiements" [value]="paiement.id">{{ paiement.paiement_method }}</option>
+                  <option value="" disabled selected>Sélectionnez la méthode de paiement</option> <!-- Placeholder -->
+                  <option *ngFor="let paiement of paiements" [value]="paiement.id">{{ paiement.paiement_method }}</option>
                 </select> 
               </div>
       

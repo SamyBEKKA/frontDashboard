@@ -34,7 +34,6 @@ export interface Order {
   paiement_effect: boolean;
   status_id: string;
   paiement_id: string;
-  items: string[];
 }
 export interface Item {
   id: number;
@@ -48,6 +47,10 @@ export interface Item {
 export interface Paiement {
   id:number;
   paiement_method:string;
+}
+export interface Status{
+  id:number;
+  name_status:string;
 }
 export interface ApiListResponse<T> {
   '@id': string;

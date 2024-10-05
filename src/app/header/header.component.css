@@ -1,34 +1,106 @@
+/* Logo */
+.logo {
+  background-color: skyblue;
+  border-radius: 50%;
+  width: 60px; /* Ajuste selon tes besoins */
+  height: 60px; /* Ajuste selon tes besoins */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .logo-L {
-    max-width: 150px; /* Taille maximale du logo */
-    height: auto;     /* Ajuste automatiquement la hauteur pour respecter le ratio */
+  max-width: 150px; /* Taille maximale du logo sur PC */
+  height: auto;     /* Ajuste automatiquement la hauteur pour respecter le ratio */
+}
+
+/* Pour les résolutions entre 768px et 1024px (tablettes et plus) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .logo-L {
+      max-width: 100px !important; /* Taille réduite pour les tablettes et grands écrans intermédiaires */
+      height: auto !important; /* Conserve le ratio hauteur/largeur */
+  }
 }
 
 @media (max-width: 768px) {
-    .dropdown-menu {
-      margin-right: 20px; /* Ajuste la marge à droite sur mobile */
-    }
+  .logo-L {
+      max-width: 80px !important; /* Taille réduite sur tablette */
+      height: auto !important; /* Ajuste automatiquement la hauteur */
+  }
 }
 
 @media (max-width: 575px) {
-    /* Cibler les écrans mobiles avec une largeur max de 575px */
-    .dropdown-menu {
-      position: absolute; /* Permet de contrôler la position du menu */
-      right: 10px; /* Décale le menu vers la droite */
-      left: auto;  /* Assure que le menu ne soit pas aligné à gauche */
-      margin: 0;   /* Supprime toute marge supplémentaire */
-    }
-  
-    /* Ajuster la largeur des boutons dans le menu pour mobile */
-    .dropdown-menu .btn {
+  .logo-L {
+      max-width: 50px !important; /* Taille encore plus réduite sur mobile */
+      height: auto !important; /* Ajuste automatiquement la hauteur */
+  }
+}
+
+/* Grand texte pour logo */
+.big-l {
+  font-size: 2rem; /* Ajuste la taille de la lettre */
+  font-weight: bold;
+  color: white; /* Couleur de la lettre */
+}
+
+/* Couleur accent pour les textes */
+.text-accent {
+  color: #FFE553; /* Couleur accent */
+}
+
+/* Icônes dans la barre de navigation */
+.nav-icons {
+  display: flex;
+  align-items: center;
+  margin-top: 10px; /* Ajoute un espacement vertical sur mobile et tablette */
+}
+
+.nav-icon {
+  margin-left: 15px; /* Espacement entre les icônes */
+}
+
+.nav-icon img {
+  width: 25px; /* Ajuste la taille des icônes */
+  height: 25px; /* Ajuste la taille des icônes */
+}
+
+/* Image plein écran avec ajustement */
+.full-width-image {
+  height: 60vh; /* Garde une hauteur rectangulaire */
+  object-fit: cover;
+}
+
+/* Texte centré en bas de l'image */
+.image-text {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  background-color: rgba(0, 0, 0, 0.2); /* Fond semi-transparent */
+  padding: 10px 20px;
+  text-align: center;
+  width: 100%;
+}
+
+/* Styles responsive */
+@media (max-width: 768px) {
+  .dropdown-menu {
+      margin-right: 20px; /* Ajuste la marge à droite sur mobile */
+  }
+}
+
+@media (max-width: 575px) {
+  .dropdown-menu {
+      margin-right: 20px; /* Ajuste la marge à droite sur mobile */
+  }
+
+  .dropdown-menu .btn {
       width: 90%; /* Réduit légèrement la largeur des boutons */
       margin: 0 auto; /* Centre les boutons */
-    }
-  
-    /* Centre le texte du lien dans le menu */
-    .dropdown-menu a {
+  }
+
+  .dropdown-menu a {
       text-align: center; /* Centre le texte des liens */
-    }
+  }
 }
-  
-  
-  

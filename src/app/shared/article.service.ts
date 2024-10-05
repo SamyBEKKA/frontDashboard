@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { forkJoin, Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
-import { Article } from './auth';
+import { ApiListResponse, Article } from './auth';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +13,8 @@ export class ArticleService {
   constructor(private http: HttpClient) {}
 
   // Méthode pour récupérer tous les articles
-  getArticles(): Observable<Article[]> {
-    return this.http.get<Article[]>(this.url); // Aucun token requis
+  getArticles(): Observable<ApiListResponse<Article>> {
+    return this.http.get<ApiListResponse<Article>>(this.url); // Aucun token requis
   }
 
   private getAuthHeaders(): HttpHeaders {

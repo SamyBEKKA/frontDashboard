@@ -95,31 +95,27 @@ export class AuthService {
   }
 
   // Méthode pour récupérer l'utilisateur courant (depuis le token)
-  getCurrentUser(): User | null {
+  getCurrentUser(): any {
     const token = this.getToken();
   
     if (token) {
       const decodedToken = this.decodeToken(token);
   
-      if (decodedToken && decodedToken.username) {
-        // Appel API pour obtenir les détails de l'utilisateur
+      if (decodedToken && decodedToken.user_email) {
         return {
-          id: 0,  // À remplacer par l'ID correct une fois récupéré
-          user_name: decodedToken.username,
-          user_last_name: '',  // À récupérer depuis une autre source si nécessaire
-          user_genre: '',      // À récupérer
-          user_birthday: new Date(),  // À récupérer
-          user_email: '',      // À récupérer
-          user_tel: '',        // À récupérer
-          user_adress: '',     // À récupérer
-          user_password: '',   // Non nécessaire ici
-          user_roles: decodedToken.roles
+          user_email: decodedToken.user_email,  // Utilise `user_email` du token
+          roles: decodedToken.roles,            // Récupère les rôles
         };
+      } else {
+        console.error('Token invalide ou email manquant');
+        return null;
       }
+    } else {
+      console.error('Aucun token trouvé');
+      return null;
     }
-
-    return null;
   }
+  
   
 
 }

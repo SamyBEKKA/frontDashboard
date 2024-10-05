@@ -27,8 +27,10 @@ export class ItemService {
   }
 
   // Récupérer les items
-  getItems(): Observable<ApiListResponse<Item>> {
-    return this.http.get<ApiListResponse<Item>>(this.url, { headers: this.getAuthHeaders() });
+  getItems(userId: string): Observable<ApiListResponse<Item>> {
+    return this.http.get<ApiListResponse<Item>>(`${this.url}?user_id=${userId}`, {
+      headers: this.getAuthHeaders()
+    });
   }
 
 }

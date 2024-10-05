@@ -1,1 +1,64 @@
 <app-header></app-header>
+
+<section class="container mt-5">
+  <h2 class="text-center mb-5">Mes Commandes</h2>
+
+  <!-- Vérifier s'il y a des commandes à afficher -->
+  <div *ngIf="commandes.length > 0">
+    <div class="row">
+      <!-- Parcourir chaque commande -->
+      <div class="col-md-6 mb-4" *ngFor="let commande of commandes">
+        <div class="card shadow-sm h-100">
+          <div class="card-header text-white bg-primary">
+            <h5 class="mb-0">Commande #{{ commande.id }}</h5>
+          </div>
+          <div class="card-body">
+            <h6 class="card-title">Détails des articles :</h6>
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>Service</th>
+                  <th>Article</th>
+                  <th>Matériaux</th>
+                  <th>Prix</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Afficher les informations des items associés à la commande -->
+                <ng-container *ngFor="let item of getItemsForOrder(commande.id!.toString())">
+                  <tr>
+                    <td>{{ getServiceName(item.service_id) }}</td>
+                    <td>{{ getArticleName(item.article_id) }}</td>
+                    <td>{{ getMaterialName(item.material_id) }}</td>
+                    <td>{{ item.total_price | currency: 'EUR' }}</td>
+                  </tr>
+                </ng-container>
+              </tbody>
+            </table>
+
+            <div class="mt-4">
+              <h6 class="mb-2">Statut de la commande :</h6>
+              <span class="badge" [ngClass]="{
+                  'bg-success': getStatusName(commande.status_id) === 'Livré',
+                  'bg-warning': getStatusName(commande.status_id) === 'En cours',
+                  'bg-danger': getStatusName(commande.status_id) === 'Annulé'
+                }">
+                {{ getStatusName(commande.status_id) }}
+              </span>
+            </div>
+          </div>
+          <div class="card-footer text-muted">
+            Commande effectuée par : <strong>{{ commande.user_id }}</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Message si aucune commande n'a été trouvée -->
+  <div *ngIf="commandes.length === 0">
+    <div class="alert alert-info text-center">
+      <p class="mb-0">Vous n'avez actuellement aucune commande.</p>
+    </div>
+  </div>
+</section>

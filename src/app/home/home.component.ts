@@ -6,11 +6,12 @@ import { PrestationService } from '../shared/prestation.service';
 import { LoginComponent } from '../login/login.component';
 import { AuthService } from '../shared/auth.service';
 import { Service } from '../shared/auth';
+import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [HeaderComponent, RouterOutlet, CommonModule, RouterLink, LoginComponent],
+  imports: [HeaderComponent, FooterComponent, RouterOutlet, CommonModule, RouterLink, LoginComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })

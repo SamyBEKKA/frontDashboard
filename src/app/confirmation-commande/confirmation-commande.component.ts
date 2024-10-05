@@ -3,6 +3,7 @@ import { HeaderComponent } from "../header/header.component";
 import { AuthService } from '../shared/auth.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   selector: 'app-confirmation-commande',

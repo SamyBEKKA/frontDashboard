@@ -1,0 +1,13 @@
+footer {
+    color: white;
+}
+footer h2{
+    color: white;
+}
+footer a {
+    color: white;
+}
+
+footer a:hover {
+    color: var(--color-accent); /* Utiliser la couleur d'accent lors du survol */
+}

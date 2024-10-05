@@ -94,18 +94,19 @@ a:hover {
 }
 
 /* Styles supplémentaires */
-.logo-container {
+/* .logo-container {
     position: relative;
-    width: 60px; /* Ajuste la taille si nécessaire */
-    height: 60px; /* Ajuste la taille si nécessaire */
-    border-radius: 50%; /* Arrondi complet */
+    width: 60px; /* Ajuste la taille si nécessaire 
+    height: 60px; /* Ajuste la taille si nécessaire 
+    border-radius: 50%; Arrondi complet 
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
+} */
 .icon-container svg {
     width: 24px; /* Taille des icônes */
     height: 24px;
     fill: var(--color-primary); /* Couleur primaire pour les icônes */
 }
+
+

@@ -12,16 +12,16 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav mx-auto">
             <li class="nav-item" (click)="setActiveMenu('accueil')">
-                <a class="nav-link" [ngClass]="{'text-accent': isActiveMenu('dashboard')}" href="dashboard">Accueil</a>
+                <a class="nav-link" [ngClass]="{'text-accent': isActiveMenu('')}" href="">Accueil</a>
             </li>
             <li class="nav-item" (click)="setActiveMenu('qui_sommes_nous')">
-                <a class="nav-link" [ngClass]="{'text-accent': isActiveMenu('qui_sommes_nous')}" href="#">Qui sommes-nous ?</a>
+                <a class="nav-link" [ngClass]="{'text-accent': isActiveMenu('qui_sommes_nous')}" href="">Qui sommes-nous ?</a>
             </li>
             <li class="nav-item" (click)="setActiveMenu('prestation')">
-                <a class="nav-link" [ngClass]="{'text-accent': isActiveMenu('prestation')}" href="#">Prestation</a>
+                <a class="nav-link" [ngClass]="{'text-accent': isActiveMenu('prestation')}" href="">Prestation</a>
             </li>
             <li class="nav-item" (click)="setActiveMenu('contact')">
-                <a class="nav-link" [ngClass]="{'text-accent': isActiveMenu('contact')}" href="#">Contact</a>
+                <a class="nav-link" [ngClass]="{'text-accent': isActiveMenu('contact')}" href="">Contact</a>
             </li>
         </ul>
 

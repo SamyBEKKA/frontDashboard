@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ApiListResponse, Item, Order, Paiement, User } from '../shared/auth';
 import { PaiementService } from '../shared/paiement.service';
 import { CommonModule } from '@angular/common';
@@ -18,7 +18,7 @@ import { error } from 'console';
   templateUrl: './paiement.component.html',
   styleUrl: './paiement.component.css'
 })
-export class PaiementComponent {
+export class PaiementComponent implements OnInit{
   paiements: Paiement[] = []; // Stocke la liste des méthodes de paiement
   selectedPaiement!: Paiement;// Stocke la méthode de paiement sélectionnée
   savedOrders: any[] = [];// Commandes sauvegardées dans le panier
@@ -95,7 +95,7 @@ export class PaiementComponent {
         const orderData: Order = {
           paiement_effect: true,
           user_id: `/api/users/${user.id}`,  // Utiliser l'ID de l'utilisateur récupéré
-          items: this.savedOrders.map(order => `http://localhost:8000/api/items/${order.id}`),
+          // items: this.savedOrders.map(order => `http://localhost:8000/api/items/${order.id}`),
           status_id: 'http://localhost:8000/api/statuses/1',
           paiement_id: `http://localhost:8000/api/paiements/${this.selectedPaiement}`
         };

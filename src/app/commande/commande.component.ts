@@ -9,6 +9,7 @@ import { Article, Material, Service } from '../shared/auth';
 
 import { AuthService } from '../shared/auth.service';
 import { Router } from '@angular/router';
+import { FooterComponent } from "../footer/footer.component";
 
 @Component({
   selector: 'app-commande',
@@ -84,9 +85,17 @@ export class CommandeComponent implements OnInit {
 
   // Nouvelle méthode pour sélectionner un service
   selectService(service: Service): void {
-    this.selectedService = service; // Assigner le service sélectionné
+    // Si le service est déjà sélectionné, le désélectionner
+    if (this.selectedService === service) {
+      this.selectedService = null;
+    } else {
+      this.selectedService = service; // Sinon, sélectionner ce service
+    }
   }
-
+  // Vérifie si un service est sélectionné
+  isSelected(service: Service): boolean {
+    return this.selectedService === service;
+  }
   // Sauvegarder une commande dans le localStorage
   saveOrder(): void {
     if (this.selectedService && this.selectedArticle && this.selectedMaterial) {
