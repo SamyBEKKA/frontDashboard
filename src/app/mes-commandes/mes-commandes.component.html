@@ -1,3 +1,4 @@
+<br>
 <section class="container mt-5">
   <h2 class="text-center mb-5">Mes Commandes</h2>
 
@@ -37,7 +38,7 @@
             <div class="mt-4">
               <h6 class="mb-2">Statut de la commande :</h6>
               <span class="badge" [ngClass]="{
-                  'bg-success': getStatusName(commande.status_id) === 'Livré',
+                  'bg-success': getStatusName(commande.status_id) === 'En attente',
                   'bg-warning': getStatusName(commande.status_id) === 'En cours',
                   'bg-danger': getStatusName(commande.status_id) === 'Annulé'
                 }">

@@ -22,6 +22,7 @@ export class HomeComponent implements OnInit {
   services: Service[] = [];
   private activeMenu: string = '';
   public isCartOpen: boolean = false;
+  
   constructor(private prestationService: PrestationService){
     
     }

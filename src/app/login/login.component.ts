@@ -34,16 +34,16 @@ export class LoginComponent {
       user_email: ['', [Validators.required, Validators.email]],
       user_tel: ['', Validators.required],
       user_adress: ['', Validators.required],
-      user_password: ['', [Validators.required, Validators.minLength(6)]],
-      confirm_password: ['', [Validators.required, Validators.minLength(6)]],
+      password: ['', [Validators.required, this.passwordValidator()]],
+      confirm_password: ['', [Validators.required, this.passwordValidator()]],
       // city_id: ['', Validators.optional] // Si nécessaire
-    });
+    }, { validator: this.passwordMatchValidator });
 
     // Initialisation du formulaire de connexion
     this.loginForm = this.fb.group({
       credentials: this.fb.group({
         username: ['', Validators.required],
-        password: ['', [Validators.required, Validators.minLength(2)]],
+        password: ['', Validators.required],
       }),
     });
   }
@@ -60,7 +60,7 @@ export class LoginComponent {
         user_email: this.registerForm.value.user_email,
         user_tel: this.registerForm.value.user_tel,
         user_adress: this.registerForm.value.user_adress,
-        user_password: this.registerForm.value.user_password, // Hachage côté serveur
+        password: this.registerForm.value.password, // Hachage côté serveur
         confirm_password: this.registerForm.value.confirm_password,
         user_roles: ['ROLE_USER'], // Rôle par défaut
       }; // Ajoute le validateur
@@ -82,13 +82,37 @@ export class LoginComponent {
           })
       )
       .subscribe();
-} else {
-  console.log('Formulaire d’inscription invalide');
-}
-}
+    } else {
+      console.log('Formulaire d’inscription invalide');
+    }
+  }
+
+  // Validateur personnalisé pour les exigences du mot de passe
+  passwordValidator() {
+    return (control: any): { [key: string]: any } | null => {
+      const password = control.value;
+      
+      if (!password) {
+        return { passwordInvalid: 'Le mot de passe est requis de manière spécifique pour des raisons de sécurité.' };
+      }
+
+     // Vérification combinée des majuscules, minuscules, chiffres et symboles
+      if (
+        !/[A-Z]/.test(password) || 
+        !/[a-z]/.test(password) || 
+        !/\d/.test(password) || 
+        !/[!@#$%^&*(),.?':{}|<>_-]/.test(password)) {
+      return { passwordInvalid: "Le mot de passe doit contenir au moins une lettre majuscule, une lettre minuscule, un chiffre et l'un de ces caractères spéciaux : !@#$%^&*(),.?':{}|<>_-"
+        }
+      }
+
+
+      return null; // Le mot de passe est valide
+    };
+  }
 
   passwordMatchValidator(formGroup: FormGroup) {
-    return formGroup.get('user_password')?.value === formGroup.get('confirm_password')?.value
+    return formGroup.get('password')?.value === formGroup.get('confirm_password')?.value
       ? null : { mismatch: true };
   }
   

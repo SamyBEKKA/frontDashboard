@@ -7,7 +7,7 @@ export interface User {
   user_email: string;
   user_tel: string;
   user_adress: string;
-  user_password: string; // Ne pas afficher en clair
+  password: string; // Ne pas afficher en clair
   user_roles: string[]; // Par exemple, ['ROLE_USER']
 }
 export interface Service {
