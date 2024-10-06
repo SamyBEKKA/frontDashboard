@@ -12,16 +12,16 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav mx-auto">
             <li class="nav-item" (click)="setActiveMenu('accueil')">
-                <a class="nav-link" [ngClass]="{'text-accent': isActiveMenu('')}" href="">Accueil</a>
+                <a class="nav-link" [ngClass]="{'text-accent': isActiveMenu('/#accueil')}" href="/#accueil">Accueil</a>
             </li>
             <li class="nav-item" (click)="setActiveMenu('qui_sommes_nous')">
-                <a class="nav-link" [ngClass]="{'text-accent': isActiveMenu('qui_sommes_nous')}" href="">Qui sommes-nous ?</a>
+                <a class="nav-link" [ngClass]="{'text-accent': isActiveMenu('qui_sommes_nous')}" href="/#qui-sommes-nous">Qui sommes-nous ?</a>
             </li>
             <li class="nav-item" (click)="setActiveMenu('prestation')">
-                <a class="nav-link" [ngClass]="{'text-accent': isActiveMenu('prestation')}" href="">Prestation</a>
+                <a class="nav-link" [ngClass]="{'text-accent': isActiveMenu('prestation')}" href="/#prestations">Prestation</a>
             </li>
             <li class="nav-item" (click)="setActiveMenu('contact')">
-                <a class="nav-link" [ngClass]="{'text-accent': isActiveMenu('contact')}" href="">Contact</a>
+                <a class="nav-link" [ngClass]="{'text-accent': isActiveMenu('contact')}" href="/#contact">Contact</a>
             </li>
         </ul>
 
@@ -52,6 +52,9 @@
                     </li>
                     <li class="nav-item m-2" *ngIf="isLog">
                         <a class="btn btn-primary w-100" (click)="logout()">Se déconnecter</a>
+                    </li>
+                    <li class="nav-item m-2" *ngIf="isLog">
+                        <a class="btn btn-primary w-100" [routerLink]="['/mes-commandes']">Mes commandes</a>
                     </li>
                 </ul>
             </div>

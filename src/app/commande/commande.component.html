@@ -1,4 +1,3 @@
-<app-header></app-header>
 <section class="container mt-5">
   <!-- Services Section -->
   <div col-lg-12>
@@ -60,7 +59,7 @@
   <ul class="list-group">
     <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let order of savedOrders; let i = index">
       <div>
-        Service : {{ order.service }}, au prix : {{ order.price }} € <br> - Article : {{ order.article }} <br> - Matériel : {{ order.material }}
+        <p>Service : {{ order.service }}, <br> - Article : {{ order.article }}, <br> - Matériel : {{ order.material }}, <br> - Prix : {{ order.price }} €.</p>
       </div>
       <!-- Icone de poubelle pour supprimer la commande -->
       <a class="btn btn-danger" (click)="removeOrder(i)">
