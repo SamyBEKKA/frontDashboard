@@ -27,7 +27,7 @@
       <div class="form-group">
         <label for="articleSelect">Liste d'articles :</label>
         <select id="articleSelect" class="form-control" [(ngModel)]="selectedArticle">
-          <option value="" disabled selected>Sélectionnez un article</option> <!-- Placeholder -->
+          <option value="" disabled selected>Sélectionnez un article</option>
           <option *ngFor="let article of articles" [value]="article.article_name">
             {{ article.article_name }}
           </option>

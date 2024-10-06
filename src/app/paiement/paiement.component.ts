@@ -25,6 +25,7 @@ export class PaiementComponent implements OnInit{
   totalPrice: number = 0;
   totalOrders: number = 0; // Nombre total de commandes placé dans la nombre total d'article dans la bdd (exception)
   errorMessage: string | null = null; // Pour stocker un message d'erreur
+  // items:Item[]=[]
 
   constructor(
     private router: Router, 
@@ -118,34 +119,27 @@ export class PaiementComponent implements OnInit{
       }
     );
   }
-  
-  
-  
+
   // submitOrder(): void {
   //   this.errorMessage = null; // Réinitialiser le message d'erreur
   //   const userId = this.getUserIdFromToken();
-    
   //   const user = this.authService.getCurrentUser();
-
   //   if (!user || !user.username) {
   //     console.error('Utilisateur non trouvé dans le token.');
   //     return;
   //   }
   //   console.log('Utilisateur trouvé dans le token :', user);
-    
   //   // Vérifiez si l'utilisateur est connecté
   //   if (!userId) {
   //     console.error('Utilisateur non trouvé dans le token.');
   //     this.errorMessage = 'Utilisateur non connecté.';
   //     return;
   //   }
-  
   //   if (!this.selectedPaiement) {
   //     console.error('Aucune méthode de paiement sélectionnée.');
   //     this.errorMessage = 'Veuillez sélectionner une méthode de paiement.';
   //     return;
   //   }
-  
   //   // Créer la commande dans la table `order`
   //   const orderData: Order = {
   //     paiement_effect: true, // Confirmation que le paiement est effectué

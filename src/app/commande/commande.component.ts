@@ -89,7 +89,7 @@ export class CommandeComponent implements OnInit {
     if (this.selectedService === service) {
       this.selectedService = null;
     } else {
-      this.selectedService = service; // Sinon, sélectionner ce service
+      this.selectedService = service; 
     }
   }
   // Vérifie si un service est sélectionné
@@ -144,9 +144,8 @@ export class CommandeComponent implements OnInit {
     }
   }
 
-  // Vérifier si l'utilisateur est authentifié (exemple simple, peut-être plus complexe selon ton service auth)
+  // Vérifier si l'utilisateur est authentifié 
   isAuthenticated(): boolean {
-    // Exemple de logique, à remplacer par ta méthode réelle d'authentification
     return !!localStorage.getItem('token'); // ou une vérification de session
   }
 }

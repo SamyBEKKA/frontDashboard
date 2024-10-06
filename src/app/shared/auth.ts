@@ -2,13 +2,18 @@ export interface User {
   id:number;
   user_name: string;
   user_last_name: string;
-  user_genre: string; // Par exemple, 'Autre' / 'M' ou 'F'
-  user_birthday: Date; // Assure-toi que la date est au bon format
+  user_genre: string; 
+  user_birthday: Date; 
   user_email: string;
   user_tel: string;
   user_adress: string;
-  password: string; // Ne pas afficher en clair
-  user_roles: string[]; // Par exemple, ['ROLE_USER']
+  password: string;
+  user_roles: string[]; //['ROLE_USER']
+}
+export interface ApiListResponse<T> {
+  '@id': string;
+  'hydra:totalItem':number;
+  'hydra:member':T[];
 }
 export interface Service {
   id: number;
@@ -34,6 +39,7 @@ export interface Order {
   paiement_effect: boolean;
   status_id: string;
   paiement_id: string;
+  // order_total_price:number;
 }
 export interface Item {
   id: number;
@@ -52,11 +58,7 @@ export interface Status{
   id:number;
   name_status:string;
 }
-export interface ApiListResponse<T> {
-  '@id': string;
-  'hydra:totalItem':number;
-  'hydra:member':T[];
-}
+
 // export interface IUser {
 //     username:string;
 //     password:string;

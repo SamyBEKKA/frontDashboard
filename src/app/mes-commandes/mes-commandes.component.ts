@@ -113,6 +113,11 @@ export class MesCommandesComponent implements OnInit{
       }
     );
   }
+  
+  // Filtrer les items pour une commande spécifique en fonction de l'order_id
+  getItemsForOrder(orderId: string): Item[] {
+    return this.items.filter(item => item.order_id === orderId);
+  }
 
   // Récupérer les items associés aux commandes de l'utilisateur via l'API
   getItems(): void {
@@ -145,9 +150,6 @@ export class MesCommandesComponent implements OnInit{
     return status ? status.name_status : 'Statut inconnu';
   }
   
-  // Filtrer les items pour une commande spécifique en fonction de l'order_id
-  getItemsForOrder(orderId: string): Item[] {
-    return this.items.filter(item => item.order_id === orderId);
-  }
+  
  
 }
