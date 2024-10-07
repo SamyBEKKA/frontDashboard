@@ -3,7 +3,7 @@ import { HeaderComponent } from "../header/header.component";
 import { AuthService } from '../shared/auth.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { FooterComponent } from '../footer/footer.component';
+import { User } from '../shared/auth';
 
 @Component({
   selector: 'app-confirmation-commande',
@@ -13,25 +13,34 @@ import { FooterComponent } from '../footer/footer.component';
   styleUrl: './confirmation-commande.component.css'
 })
 export class ConfirmationCommandeComponent implements OnInit {
-
-  user: any;
-  city: any;
+  user: User | null = null;
 
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
     // Récupérer les informations utilisateur à partir du token
-    this.user = this.authService.getCurrentUser();
+    const tokenUser = this.authService.getCurrentUser();
 
-    if (this.user) {
-      console.log('Utilisateur récupéré à partir du token :', this.user);
+    if (tokenUser && tokenUser.user_email) {
+      console.log('Utilisateur récupéré à partir du token :', tokenUser);
+
+      // Utiliser l'email pour récupérer les détails complets de l'utilisateur depuis l'API
+      this.authService.getUserByEmail(tokenUser.user_email).subscribe(
+        (userData: User) => {
+          this.user = userData;  // Stocker les données utilisateur complètes
+        },
+        (error) => {
+          console.error('Erreur lors de la récupération des données utilisateur :', error);
+        }
+      );
     } else {
-      console.error('Aucun utilisateur connecté');
+      console.error('Aucun utilisateur connecté ou email manquant dans le token');
     }
   }
 
   continue(): void {
-    // Par exemple, navigation vers une autre page
-    this.router.navigate(['/paiement']);  // Change '/next-page' avec l'URL de la page souhaitée
+    this.router.navigate(['/paiement']);
   }
+
+  
 }

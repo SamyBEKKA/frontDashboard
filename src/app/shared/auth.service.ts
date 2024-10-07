@@ -79,7 +79,17 @@ export class AuthService {
   // Méthode pour décoder le token JWT et extraire les informations
   decodeToken(token: string): any {
     try {
-      const payload = JSON.parse(atob(token.split('.')[1]));
+      const base64Url = token.split('.')[1]; // Récupérer la partie payload du token JWT
+      const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+      const jsonPayload = decodeURIComponent(
+        atob(base64)
+          .split('')
+          .map(function(c) {
+            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+          })
+          .join('')
+      );
+      const payload = JSON.parse(jsonPayload);
       console.log('Contenu du token décodé :', payload);
       return payload;
     } catch (error) {
@@ -88,6 +98,21 @@ export class AuthService {
     }
   }
 
+
+  // Méthode pour récupérer l'utilisateur via son ID
+  getUserById(id: string): Observable<User> {
+    const url = `${environment.apiURL}/users/${id}`;
+    return this.http.get<User>(url);  // Retourne un Observable de type User
+  }
+
+  getUserDetails(username: string): Observable<User> {
+    return this.http.get<User>(`${environment.apiURL}/users/${username}`);
+  }
+  
+  getUserByEmail(email: string): Observable<User> {
+    return this.http.get<User>(`${environment.apiURL}/users?email=${email}`);
+  }
+  
   // Méthode pour récupérer l'utilisateur via son username (avec type User)
   getUserByUsername(username: string): Observable<User> {
     const url = `${environment.apiURL}/users?username=${username}`;
@@ -96,18 +121,20 @@ export class AuthService {
 
   // Méthode pour récupérer l'utilisateur courant (depuis le token)
   getCurrentUser(): any {
-    const token = this.getToken();
-  
+    const token = this.getToken();  // Récupérer le token
+    
     if (token) {
       const decodedToken = this.decodeToken(token);
-  
-      if (decodedToken && decodedToken.user_email) {
+    
+      // Vérifier s'il y a un `username` ou un autre identifiant pertinent dans le token
+      if (decodedToken && decodedToken.username) {
         return {
-          user_email: decodedToken.user_email,  // Utilise `user_email` du token
-          roles: decodedToken.roles,            // Récupère les rôles
+          username: decodedToken.username,  // Utiliser `username` à la place de `user_email`
+          id: decodedToken.user_id || decodedToken.sub || null,  // Récupérer l'ID utilisateur (si présent)
+          roles: decodedToken.roles,        // Récupérer les rôles
         };
       } else {
-        console.error('Token invalide ou email manquant');
+        console.error('Token invalide ou username manquant');
         return null;
       }
     } else {
@@ -115,6 +142,8 @@ export class AuthService {
       return null;
     }
   }
+  
+  
   
   
 

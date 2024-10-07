@@ -47,7 +47,7 @@ export interface Item {
   service_id: number;
   material_id: number;
   total_price: number;
-  nombres_articles: number;
+  // nombres_articles: number;
   order_id: string;
 }
 export interface Paiement {

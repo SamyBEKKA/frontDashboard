@@ -38,16 +38,16 @@
             <div class="mt-4">
               <h6 class="mb-2">Statut de la commande :</h6>
               <span class="badge" [ngClass]="{
-                  'bg-success': getStatusName(commande.status_id) === 'En attente',
+                  'bg-success': getStatusName(commande.status_id) === 'En attente de confirmation',
                   'bg-warning': getStatusName(commande.status_id) === 'En cours',
-                  'bg-danger': getStatusName(commande.status_id) === 'Annulé'
+                  'bg-danger': getStatusName(commande.status_id) === 'Terminé'
                 }">
                 {{ getStatusName(commande.status_id) }}
               </span>
             </div>
           </div>
           <div class="card-footer text-muted">
-            Commande effectuée par : <strong>{{ commande.user_id }}</strong>
+            Commande effectuée par : <strong>{{ getUsernameForOrder(commande.user_id) }}</strong>
           </div>
         </div>
       </div>
